@@ -1,0 +1,35 @@
+<%= form_for(grade) do |f| %>
+  <% if @grade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+
+      <ul>
+      <% @grade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nota %><br>
+    <%= f.number_field :nota, required: true, min: 0 %>
+  </div>
+
+    <div class="field">
+    <%= f.label :Activity_id %><br>
+    <% @atividades = Activity.where("Discipline_id in (?)", Discipline.where( users_id: current_user.id).ids) %>
+    <%= f.select :Activity_id, options_for_select(@atividades.collect {|atv| [ atv.nome, atv.id ]},1), {}, {id: 'atividades_select', required: true, include_blank: true} %>
+  </div>
+
+    <div class="field">
+    <%= f.label :User_id %><br>
+
+    <%= f.select :User_id, {}, {}, {id: 'users_select', required: true} %>
+  </div>
+
+  <div class="modal-footer">
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit 'Save Changes', :class => 'btn btn-primary'  %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  theme_id: 
+  pergunta: MyText
+  resposta: MyString
+  alternativaA: MyText
+  alternativaB: MyText
+  alternativaC: MyText
+  alternativaD: MyText
+  alternativaE: MyText
+
+two:
+  theme_id: 
+  pergunta: MyText
+  resposta: MyString
+  alternativaA: MyText
+  alternativaB: MyText
+  alternativaC: MyText
+  alternativaD: MyText
+  alternativaE: MyText

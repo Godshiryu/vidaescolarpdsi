@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vida Escolar • Colégio da Cidade</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+
+	<%= javascript_include_tag 'bootstrap-datepicker.min', 'data-turbolinks-track' => true %>
+
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+	<%= stylesheet_link_tag    'bootstrap-datepicker3.min', media: 'all', 'data-turbolinks-track' => true %>
+
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<%= stylesheet_link_tag    'sb-admin', media: 'all', 'data-turbolinks-track' => true %>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+	<%= csrf_meta_tags %>
+
+</head>
+
+<body>
+
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2e7d32;" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+				</button>
+				<a class="navbar-brand"  href="#">Vida Escolar</a>
+			</div>
+			<!-- Top Menu Items -->
+			<ul class="nav navbar-right top-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+						<% if user_signed_in?  %>
+						<%= current_user.email %>
+						<% else  %>
+						ACESSO
+						<%end %>
+						<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<%= render 'devise/menu/registration_items' %>
+							<%= render 'devise/menu/login_items' %>
+						</li>
+					</ul>
+					<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav side-nav">
+							<!--<% if user_signed_in?  %>
+							<%= image_tag current_user.avatar.url(:thumb) %>
+							<%end%>-->
+							<li>
+								<%= link_to  root_path do %>
+								<i class="glyphicon glyphicon-home">Home</i>
+								<% end %>
+							</li>
+							<li>
+								<%= link_to activities_path do %>
+								<i class="glyphicon glyphicon-tasks">Atividades</i>
+								<% end %>
+							</li>
+							<li>
+
+								<%= link_to disciplines_path do %>
+								<i class="glyphicon glyphicon-education">Disciplinas</i>
+								<% end %>
+							</li>
+							<li>
+
+								<%= link_to grades_path do %>
+								<i class="glyphicon glyphicon-education">Notas</i>
+								<% end %>
+							</li>
+							<li>
+
+								<%= link_to calendar_path do %>
+								<i class="glyphicon glyphicon-calendar">Calendário</i>
+								<% end %>
+							</li>
+							<li>
+								<%= link_to themes_path do %>
+								<i class="glyphicon glyphicon-pencil">Questionário
+								</i>
+								<% end %>
+							</li>
+							<%if current_user.try(:admin) %>
+							<li>
+								<%= link_to questions_path do %>
+								<i class="glyphicon glyphicon-pencil">Questões</i>
+								<% end %>
+							</li>
+							<%end%>
+							<li>
+
+								<%= link_to faqs_path, class: "" do %>
+								<i class="glyphicon glyphicon-question-sign">Ajuda</i>
+								<% end %>
+							</li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+
+				</nav>
+
+				<div id="page-wrapper" >
+
+					<!-- /.container-fluid -->
+
+
+					<div>
+						<% flash.each do |key, value| %>
+						<div  class="alert alert-<%= key%> alert-dismissible">
+							<%= value %></div>
+							<% end %>
+							<%= yield %>
+						</div>
+
+					</div>
+
+				</div>
+
+			</body>
+			</html>

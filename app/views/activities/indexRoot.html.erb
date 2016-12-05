@@ -1,0 +1,38 @@
+<h1>Próximas Atividades</h1>
+
+<div class="bs-example" >
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+      <th>Atividade</th>
+      <th>Disciplina</th>
+      <th>Data</th>
+      <th colspan="1">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.nome %></td>
+        <td><%= activity.Discipline.try(:nome) %></td>
+        <td><%= activity.data.strftime("%d/%m/%Y")%></td>
+        <td><%= link_to 'Show',  '#', 'data-target' => "#myModal2_#{activity.id}", 'data-toggle' => 'modal'  %></td>
+      <div class="modal fade" id='<%= "myModal2_#{activity.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Show</h4>
+            </div>
+            <div class="modal-body">
+              <%= render 'show', activity: activity %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </tr>
+    <% end %>
+    </tbody>
+</table>
+</div>
+

@@ -1,0 +1,16 @@
+<p>
+  <strong>Nota:</strong>
+  <%= grade.nota %>
+</p>
+
+<p>
+  <strong>Activities:</strong>
+  <%= grade.Activity.try(:nome) %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= grade.User.try(:nome) %>
+</p>
+
+<%= link_to 'Back', grades_path %>

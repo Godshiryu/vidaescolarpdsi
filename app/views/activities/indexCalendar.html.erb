@@ -1,0 +1,11 @@
+<h1>Calendário</h1>
+
+<%= month_calendar events: @activities do |date, evt| %>
+<%= date.strftime("%d/%m/%Y") %>
+
+<% evt.each do |meeting| %>
+<div>
+<%= link_to meeting.nome, evt %><br>
+</div>
+<% end %>
+<% end %>	

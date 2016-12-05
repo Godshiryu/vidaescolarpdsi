@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tema: MyString
+  datahora: 2016-08-31 11:00:59
+  sala: MyString
+  Discipline_id: 
+
+two:
+  tema: MyString
+  datahora: 2016-08-31 11:00:59
+  sala: MyString
+  Discipline_id: 

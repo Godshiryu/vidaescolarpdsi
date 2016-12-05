@@ -1,0 +1,34 @@
+<% @questions = Question.where("theme_id IN (?)", @theme.id) %>
+
+<div class="bs-example" >
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Pergunta</th>
+				<th>Resposta Correta</th>
+				<th>Resposta Usuario</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<% @questions.each do |quest| %>
+		<tbody>
+			<tr>
+				<% @progress_questions = ProgressQuestion.where("question_id = ? and user_id = ?", quest.id, current_user.id).first %> <br>
+				<td>
+					<%= quest.pergunta %><br>
+				</td>
+				<td>
+					<%= quest.resposta %><br>
+				</td>
+				<td>
+					<%= @progress_questions.resposta %><br>
+				</td>
+				<td>
+					<%= quest.resposta == @progress_questions.resposta ? "Certo" : "Errado" %><br>
+				</td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+
+	<%= link_to 'Back', themes_path, class: "btn btn-primary" %>

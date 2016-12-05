@@ -1,0 +1,1 @@
+json.partial! "progress_questions/progress_question", progress_question: @progress_question

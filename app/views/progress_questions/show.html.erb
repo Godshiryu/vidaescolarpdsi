@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @progress_question.user %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @progress_question.question %>
+</p>
+
+<p>
+  <strong>Resposta:</strong>
+  <%= @progress_question.resposta %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @progress_question.status %>
+</p>
+
+<%= link_to 'Edit', edit_progress_question_path(@progress_question) %> |
+<%= link_to 'Back', progress_questions_path %>

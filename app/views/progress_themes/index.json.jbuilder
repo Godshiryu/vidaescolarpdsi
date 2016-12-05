@@ -1,0 +1,1 @@
+json.array! @progress_themes, partial: 'progress_themes/progress_theme', as: :progress_theme

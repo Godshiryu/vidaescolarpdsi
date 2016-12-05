@@ -1,0 +1,14 @@
+<%= form_tag(matricula_path(:disciplineMat), method: 'get') do %>
+<% @discAbertas = Discipline.where("id not in (?)",
+	Discipline.select(:id)
+	.joins(:Discuser)
+	.where("user_id = (?)", current_user.id))
+	%>
+	<%= label_tag 'Escolha uma disciplina para matricular-se:' %> <br>
+	<%= select_tag 'disciplineMat', options_from_collection_for_select(@discAbertas, :id, :nomecompleto), {required: true, class: "form-control"} %>
+
+	<div class="modal-footer">
+		<%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+		<%= submit_tag "Matricular", name: nil, class: 'btn btn-primary btn-sm' %>
+	</div>
+	<% end %> 

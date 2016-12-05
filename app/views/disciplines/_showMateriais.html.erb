@@ -1,0 +1,43 @@
+   <% if current_user.admin? 
+      @class = "cell thrcol"
+   else
+      @class = "cell twocol"
+   end%>
+
+<% @materiais = discipline.discanexo %>
+<div class="table">
+  <div class="row">
+   <div class="<%= @class %>">
+     <span>Arquivo</span>
+   </div>
+   <div class="<%= @class %>">
+     <span>Link</span>
+   </div> 
+   <% if current_user.admin? %>
+   <div class="<%= @class %>">
+     <span>Apagar</span>
+   </div> 
+   <% end %>
+   
+   <% @materiais.each do |mat| %>
+   <div class="row">
+     <div class="<%= @class %>">
+       <span><%= mat.anexo.original_filename%></span>
+     </div>
+     <div class="<%= @class %>">
+       <span><%= link_to "Anexo", mat.anexo.url(:original, false) %></span>
+     </div>
+     <% if current_user.admin? %>
+     <div class="<%= @class %>">
+       <span>
+         <%= link_to 'Destroy', mat, method: :delete,data: { confirm: 'Are you sure?' } %>
+       </span>
+     </div>
+     <% end %>
+     <% end %>
+
+   </div>
+
+
+
+

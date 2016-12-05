@@ -1,0 +1,59 @@
+<div>
+	<% @questions = Question.where(theme_id: request.url.split("/")[4]) %>
+
+	<% if request.url.include?("=") %>
+	<% @idAtual = request.url.split("=")[1]%>
+	<% else %>
+	<% @idAtual = @questions.first.id %>
+	<% end %>
+
+	<% @question = @questions.find(@idAtual) %>
+	<% @anterior = @questions.
+	where("id < ?", @idAtual).first.try(:id) %>
+	<% @proxima = @questions.
+	where("id > ?", @idAtual).first.try(:id) %>
+
+	<% @progress_questions = ProgressQuestion.new%>
+	<% @jarespondeu = ProgressQuestion.where("question_id = ?", @idAtual).find_by_user_id(current_user.id).try(:resposta) %>
+
+	<%= form_for(@progress_questions) do |f| %>
+
+	<%= @question.pergunta %> <br><br>
+	<%= f.hidden_field :question_id, value: @question.id %>
+	<%= f.hidden_field :proxima_questao, value: @proxima %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<div class="btn-group" data-toggle="buttons-radio">
+		<%@tobaA = true if @jarespondeu == "A" %>
+		<%= f.radio_button :resposta, "A", checked: @tobaA%>
+		<label for="first" ><%=@question.alternativaA%></label>
+		<br>
+		<%@tobaB = @jarespondeu == "B" ? true : false%>
+		<%= f.radio_button :resposta, "B", checked: @tobaB %>
+		<label for="second"><%=@question.alternativaB%></label>
+		<br>
+		<%@tobaC = @jarespondeu == "C" ? true : false%>
+		<%= f.radio_button :resposta, "C", checked: @tobaC %>
+		<label for="third"><%=@question.alternativaC%></label>
+		<br>
+		<%@tobaD = @jarespondeu == "D" ? true : false%>
+		<%= f.radio_button :resposta, "D", checked: @tobaD%>
+		<label for="4"><%=@question.alternativaD%></label>
+		<br>
+		<%@tobaE = @jarespondeu == "E" ? true : false%>
+		<%= f.radio_button :resposta, "E", checked: @tobaE%>
+		<label for="5"><%=@question.alternativaE%></label>
+	</div>
+
+	<div class="actions">
+		<% if !@anterior.nil? %>
+		<%= f.submit "Anterior", class: "btn btn-link"%>
+		<% end %>
+		<% if @proxima.nil? %>
+		<%= f.submit "Finalizar", class: "btn btn-link"%>
+		<%else%>
+		<%= f.submit "Proximo", class: "btn btn-link"%>
+		<% end %>
+	</div>
+	<%end%>
+
+</div>

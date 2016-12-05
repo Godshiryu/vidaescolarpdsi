@@ -1,0 +1,17 @@
+
+<p>
+  <strong>Nome:</strong>
+  <%= discipline.nome %>
+</p>
+
+<p>
+  <strong>Cargahoraria:</strong>
+  <%= discipline.cargahoraria %>
+</p>
+
+<p>
+  <strong>Anexo:</strong>
+  <%= link_to "Download", @discipline.anexo.url(:original, false) %> 
+</p>
+
+<%= link_to 'Back', disciplines_path %>

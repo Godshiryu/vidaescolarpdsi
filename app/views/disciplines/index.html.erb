@@ -1,0 +1,115 @@
+<h1>Disciplinas</h1>
+
+<div class="bs-example" >
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th colspan="4">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @disciplines.each do |discipline| %>
+      <tr>
+        <td><%= discipline.codigo %></td>
+        <td><%= discipline.nome %></td>
+        <td><%= link_to 'Materiais',  '#', 'data-target' => "#myModal3_#{discipline.id}", 'data-toggle' => 'modal'  %></td>
+        <div class="modal fade" id='<%= "myModal3_#{discipline.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Materiais</h4>
+              </div>
+              <div class="modal-body">
+                <%= render 'showMateriais', discipline: discipline %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <% if !current_user.admin? %>
+        <td><%= link_to 'Notas',  '#', 'data-target' => "#myModal2_#{discipline.id}", 'data-toggle' => 'modal'  %></td>
+        <div class="modal fade" id='<%= "myModal2_#{discipline.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Notas</h4>
+              </div>
+              <div class="modal-body">
+                <%= render 'showDetails', discipline: discipline %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <%end%>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit',  '#', 'data-target' => "#myModal_#{discipline.id}", 'data-toggle' => 'modal'  %></td>
+        <div class="modal fade" id='<%= "myModal_#{discipline.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <%= render 'edit', discipline: discipline %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <td><%= link_to 'Destroy', discipline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%if current_user.admin? %>
+
+<%= link_to '',  '#', 'data-target' => "#myModal", 'data-toggle' => 'modal'  %>
+<div class="modal fade" id='<%= "myModal" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', discipline: @discipline %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+  Add Discipline
+</button>
+
+<% else %>
+
+<%= link_to '',  '#', 'data-target' => "#myModal", 'data-toggle' => 'modal'  %>
+<div class="modal fade" id='<%= "myModal" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Realiza Matricula</h4>
+      </div>
+      <% @variable = Discipline.new %>
+      <div class="modal-body">
+        <%= render 'matricula', discuser: @variable %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+  Realizar Matricula
+</button>
+
+<% end %>

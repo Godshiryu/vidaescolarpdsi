@@ -1,0 +1,186 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: transparent;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.top-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    color: #ffffff;
+}
+
+.top-nav > li > a:hover, .top-nav > li > a:focus, .top-nav > .open > a, .top-nav > .open > a:hover, .top-nav > .open > a:focus {
+    color: #fff;
+    background-color: #2e7d32;
+}
+
+.side-nav {
+    position: fixed;
+    top: 51px;
+    left: 225px;
+    width: 225px;
+    margin-left: -225px;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    background-color: #ffffff;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #000000;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #2e7d32;
+    background-color: transparent;
+}
+
+.side-nav li a:hover, .side-nav li a:focus {
+    outline: none;
+    background-color: rgb(224,224,224) !important;
+}
+
+.table {width: 100%; height: 100%;}
+.row {width: 100%; min-height: 1px; height: auto; margin: 0;}
+.cell {float: left; margin: 0; padding: 0;}
+.onecol {width: 100%;}
+.twocol {width: 50%;}
+.thrcol {width: 33%;}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    color: #2e7d32;
+}
+
+.h1, h1 {
+    font-size: 36px;
+    color: #2e7d32;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary .active {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary.active, .btn-primary:active, .open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+    color: #fff;
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+/* line 2, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar table {
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+}
+/* line 13, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar tr {
+  border-collapse: collapse;
+}
+/* line 17, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar th {
+  padding: 6px;
+  border-bottom: 2px solid #dddddd;
+  border-collapse: collapse;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-top: 0px none #333333;
+  box-sizing: border-box;
+  text-align: left;
+}
+/* line 28, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar td {
+  padding: 6px;
+  vertical-align: top;
+  width: 14%;
+  border: 1px solid #ddd;
+  border-top-color: #dddddd;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-right-color: #dddddd;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: #dddddd;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: #dddddd;
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+/* line 48, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar .day {
+  height: 80px;
+}
+/* line 60, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar .today {
+  background: #ffffc0;
+}
+/* line 69, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar .prev-month {
+  background: #DDD;
+}
+/* line 72, /home/pdsi/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/simple_calendar-2.0.6/app/assets/stylesheets/simple_calendar.scss */
+.simple-calendar .next-month {
+  background: #DDD;
+}

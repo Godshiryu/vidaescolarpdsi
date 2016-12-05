@@ -1,0 +1,62 @@
+<h1>Questões</h1>
+
+<div class="bs-example" >
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Tema</th>
+        <th>Pergunta</th>
+        <th colspan="3">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.theme.try(:nome) %></td>
+        <td><%= question.pergunta %></td>     
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit',  '#', 'data-target' => "#myModal_#{question.id}", 'data-toggle' => 'modal'  %></td>
+        <div class="modal fade" id='<%= "myModal_#{question.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <%= render 'edit', question: question %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <%end%>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%if current_user.admin? %>
+
+<%= link_to '',  '#', 'data-target' => "#myModal", 'data-toggle' => 'modal'  %>
+<div class="modal fade" id='<%= "myModal" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', question: @question %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+  Adicionar Questão
+</button>
+
+<% end %>

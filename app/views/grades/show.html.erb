@@ -1,0 +1,18 @@
+
+<p>
+  <strong>Nota:</strong>
+  <%= @grade.nota %>
+</p>
+
+<p>
+  <strong>Activities:</strong>
+  <%= @grade.Activity %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @grade.User %>
+</p>
+
+<%= link_to 'Edit', edit_grade_path(@grade) %> |
+<%= link_to 'Back', grades_path %>

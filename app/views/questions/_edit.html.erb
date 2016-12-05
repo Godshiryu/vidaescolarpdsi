@@ -1,0 +1,54 @@
+<%= form_for(question, html: { multipart: true })  do |f| %>
+<% if question.errors.any? %>
+<div >
+  <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+  <ul>
+    <% question.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<% @themes = Theme.where( "discipline_id IN (?)", Discipline.where( users_id: current_user.id).ids ) %>
+
+<div class="field">
+  <%= f.label :theme_id %><br>
+  <%= f.select :theme_id, options_for_select(@themes.collect {|thm| [ thm.nome, thm.id ]},1), {}, {required: true, include_blank: true} %>
+</div>
+<div class="field">
+  <%= f.label :pergunta %><br>
+  <%= f.text_area :pergunta %>
+</div>
+<div class="field">
+  <%= f.label :resposta %><br>
+  <%= f.select(:resposta, options_for_select([['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D'], ['E', 'E']])) %>
+</div>
+<div class="field">
+  <%= f.label :alternativaA %><br>
+  <%= f.text_area :alternativaA %>
+</div>
+<div class="field">
+  <%= f.label :alternativaB %><br>
+  <%= f.text_area :alternativaB %>
+</div>
+<div class="field">
+  <%= f.label :alternativaC %><br>
+  <%= f.text_area :alternativaC %>
+</div>
+<div class="field">
+  <%= f.label :alternativaD %><br>
+  <%= f.text_area :alternativaD %>
+</div>
+<div class="field">
+  <%= f.label :alternativaE %><br>
+  <%= f.text_area :alternativaE %>
+</div>
+
+<div class="modal-footer">
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit 'Save Changes', :class => 'btn btn-primary'  %>
+</div>
+
+<% end %>

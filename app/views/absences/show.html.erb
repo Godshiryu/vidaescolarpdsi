@@ -1,0 +1,14 @@
+
+
+<p>
+  <strong>User:</strong>
+  <%= @absence.user %>
+</p>
+
+<p>
+  <strong>Lesson:</strong>
+  <%= @absence.lesson %>
+</p>
+
+<%= link_to 'Edit', edit_absence_path(@absence) %> |
+<%= link_to 'Back', absences_path %>

@@ -1,0 +1,33 @@
+<div class="table">
+    <div class="row">
+       <div class="cell twocol">
+           <span>Atividade</span>
+       </div>
+       <div class="cell twocol">
+           <span>Nota</span>
+       </div>
+    <% @soma = 0.0 %>
+    <% discipline.Activity.each do |atv| %>
+    <div class="row">
+       <div class="cell twocol">
+           <span><%= atv.nome %></span>
+       </div>
+       <% obj = atv.Grade.find_by( User_id: current_user.id ) %>
+       <% nota = obj ? obj.nota : 0.0 %>
+       <div class="cell twocol">
+           <span><%= nota %></span>
+       </div>
+       <% @soma += nota.to_i%>
+       <% end %>
+       <div class="cell twocol">
+           <span>Total:</span>
+       </div>
+        <div class="cell twocol">
+           <span><%= @soma %></span>
+       </div>
+    
+</div>
+
+
+
+

@@ -1,0 +1,1 @@
+json.array! @progress_questions, partial: 'progress_questions/progress_question', as: :progress_question

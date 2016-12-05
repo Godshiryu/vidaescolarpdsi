@@ -1,0 +1,97 @@
+<h1>Temas para questionários</h1>
+
+<div class="bs-example" >
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Disciplina</th>
+        <th>Status</th>
+        <th colspan="4">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @themes.each do |theme| %>
+      <tr>
+        <td><%= theme.nome %></td>
+        <td><%= theme.discipline.try(:nome) %></td>  
+        <% @status = theme.progress_theme.try(:status) %>
+        <% if @status.nil? %>
+        <%@statusNome = "Não iniciado" %>
+        <% elsif @status == 1 %>
+        <%@statusNome = "Em execução" %>
+        <% else %>
+        <%@statusNome = "Finalizado" %>
+        <% end %>
+        <td>
+          <%= @statusNome %>
+        </td> 
+        <% if !current_user.admin? %>
+        <td>
+          <% end %>
+          <% if !current_user.admin? and theme.progress_theme.try(:status) == 2 %>
+          <%= link_to 'Show', theme %>
+          <% end %>
+          <% if !current_user.admin? %>
+        </td>
+        <% end %>
+        <% if !current_user.admin? and theme.progress_theme.try(:status) != 2 and theme.question_ids.count > 0 %>
+        <td>
+          <%= link_to 'Responder', 
+          answer_path(theme)
+          %>
+        </td>
+        <%elsif !current_user.admin? and theme.question_ids.count == 0%>
+        <td>
+          <%="Bloqueado"%>
+        </td>
+        <%elsif !current_user.admin? %>
+        <td>
+        </td>
+        <%end%>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit',  '#', 'data-target' => "#myModal_#{theme.id}", 'data-toggle' => 'modal'  %></td>
+        <div class="modal fade" id='<%= "myModal_#{theme.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <%= render 'edit', theme: theme %>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <%end%>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%if current_user.admin? %>
+
+<%= link_to '',  '#', 'data-target' => "#myModal", 'data-toggle' => 'modal'  %>
+<div class="modal fade" id='<%= "myModal" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', theme: @theme %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+  Adicionar Tema
+</button>
+
+<% end %>

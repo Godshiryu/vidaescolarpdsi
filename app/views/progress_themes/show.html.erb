@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @progress_theme.user %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @progress_theme.theme %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @progress_theme.status %>
+</p>
+
+<%= link_to 'Edit', edit_progress_theme_path(@progress_theme) %> |
+<%= link_to 'Back', progress_themes_path %>

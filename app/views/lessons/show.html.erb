@@ -1,0 +1,27 @@
+<p>
+  <strong>Tema:</strong>
+  <%= @lesson.tema %>
+</p>
+
+<p>
+  <strong>Datahora:</strong>
+  <%= @lesson.datahora %>
+</p>
+
+<p>
+  <strong>Sala:</strong>
+  <%= @lesson.sala %>
+</p>
+
+<p>
+  <strong>Discipline:</strong>
+  <%= @lesson.Discipline %>
+</p>
+
+<p>
+  <strong>Anexo:</strong>
+  <%= link_to "Download", @lesson.anexo.url(:original, false) %> 
+</p>
+
+<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+<%= link_to 'Back', lessons_path %>

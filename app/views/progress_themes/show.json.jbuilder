@@ -1,0 +1,1 @@
+json.partial! "progress_themes/progress_theme", progress_theme: @progress_theme

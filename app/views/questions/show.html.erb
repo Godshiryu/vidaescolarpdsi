@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @question.theme %>
+</p>
+
+<p>
+  <strong>Pergunta:</strong>
+  <%= @question.pergunta %>
+</p>
+
+<p>
+  <strong>Resposta:</strong>
+  <%= @question.resposta %>
+</p>
+
+<p>
+  <strong>Alternativaa:</strong>
+  <%= @question.alternativaA %>
+</p>
+
+<p>
+  <strong>Alternativab:</strong>
+  <%= @question.alternativaB %>
+</p>
+
+<p>
+  <strong>Alternativac:</strong>
+  <%= @question.alternativaC %>
+</p>
+
+<p>
+  <strong>Alternativad:</strong>
+  <%= @question.alternativaD %>
+</p>
+
+<p>
+  <strong>Alternativae:</strong>
+  <%= @question.alternativaE %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

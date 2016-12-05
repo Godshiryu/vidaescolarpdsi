@@ -1,0 +1,29 @@
+<%= form_for(theme, html: { multipart: true })  do |f| %>
+<% if theme.errors.any? %>
+<div >
+  <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
+
+  <ul>
+    <% theme.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.label :nome %><br>
+  <%= f.text_field :nome, required: true%>
+</div>
+
+<% @disciplines = Discipline.where( users_id: current_user.id) %>
+
+<div class="field">
+  <%= f.label :discipline_id %><br>
+  <%= f.select :discipline_id, options_for_select(@disciplines.collect {|disc| [ disc.nome, disc.id ]},1), {}, {required: true, include_blank: true} %>
+</div>
+<div class="modal-footer">
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit 'Save Changes', :class => 'btn btn-primary'  %>
+</div>
+<% end %>

@@ -1,0 +1,34 @@
+<%= form_for(@discipline, html: { multipart: true })  do |f| %>
+  <% if @discipline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discipline.errors.count, "error") %> prohibited this @discipline from being saved:</h2>
+
+      <ul>
+      <% @discipline.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome, required: true%>
+  </div>
+  <div class="field">
+    <%= f.label :cargahoraria %><br>
+    <%= f.number_field :cargahoraria, required: true , min: 0 %>
+  </div>
+  <div class="field">
+    <%= f.label :senha %><br>
+    <%= f.password_field :senha %>
+  </div>
+  <div class="field">
+    <%= f.label :Anexos %>
+    <%= file_field_tag "anexos[]", type: :file, multiple: true%>
+  </div>
+  <div class="modal-footer">
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit 'Save Changes', :class => 'btn btn-primary'  %>
+  </div>
+<% end %>
